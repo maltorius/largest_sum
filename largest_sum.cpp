@@ -1,8 +1,7 @@
 #define CATCH_CONFIG_MAIN
-#include "catch.hpp"
+#include "ext/catch.hpp"
 
 using namespace std;
-using namespace Catch::Matchers;
 
 void find_largest_sum(int T, vector<int> I, vector<int> & M, int & S) {
 
@@ -50,5 +49,5 @@ TEST_CASE( "largest sum" ) {
     find_largest_sum(T, I, M, S);
     vector<int> expected = { 1, 2, 3, 5 };
     REQUIRE( S == 11 );
-    REQUIRE_THAT( M, Equals(expected) );
+    REQUIRE_THAT( M, Catch::Matchers::Equals(expected) );
 }

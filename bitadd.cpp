@@ -1,11 +1,18 @@
 #define CATCH_CONFIG_MAIN
-#include "catch.hpp"
+#include "ext/catch.hpp"
 #include <limits.h>
 
 int add(int a, int b) {
+
+    // when adding binary there can be 3 different results
+    // 0+0=00, 1+0=01, 0+1=01, 1+1=10
+    // we set the sum to the low bit and the carry to the high bit
     int sum = a ^ b;
     int carry = a & b;
+
+    // we will recursively add until there is nothing to do => carry is zero
     while ( carry != 0 ) {
+        // between addition we need to shift the carry to accumulate on the higher bit
         carry <<= 1;
         a = sum;
         b = carry;
